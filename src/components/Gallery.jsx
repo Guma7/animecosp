@@ -87,7 +87,7 @@ const GalleryTag = styled.span`
   position: absolute;
   top: ${theme.spacing.md};
   right: ${theme.spacing.md};
-  background: ${theme.colors.primary};
+  background: ${props => props.tagColor || theme.colors.primary};
   color: ${theme.colors.text.primary};
   padding: ${theme.spacing.xs} ${theme.spacing.sm};
   border-radius: ${theme.borderRadius.small};
@@ -96,7 +96,7 @@ const GalleryTag = styled.span`
   z-index: 2;
 `;
 
-const Gallery = ({ images }) => {
+const Gallery = ({ images, categoryColor, categoryColorMap }) => {
   // Fallback images if none provided
   const fallbackImages = [
     {
@@ -174,7 +174,17 @@ const Gallery = ({ images }) => {
       {displayImages.map((image) => (
         <GalleryItem key={image.id} variants={itemVariants}>
           <GalleryImage src={image.src} alt={image.title} />
-          {image.tag && <GalleryTag>{image.tag}</GalleryTag>}
+          {image.tag && (
+            <GalleryTag 
+              tagColor={
+                categoryColorMap && categoryColorMap[image.tag] 
+                  ? categoryColorMap[image.tag] 
+                  : categoryColor
+              }
+            >
+              {image.tag}
+            </GalleryTag>
+          )}
           <GalleryInfo className="gallery-info">
             <GalleryTitle>{image.title}</GalleryTitle>
             <GalleryDescription>{image.description}</GalleryDescription>

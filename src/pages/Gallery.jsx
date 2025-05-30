@@ -185,7 +185,17 @@ const Gallery = () => {
           </FilterButton>
         </FilterContainer>
         
-        <GalleryComponent images={galleryImages} />
+        <GalleryComponent 
+          images={galleryImages} 
+          categoryColorMap={{
+            'Cosplay': '#C41230', // Vermelho para Cosplay
+            'Painéis': '#6A0DAD', // Roxo mais escuro e menos azulado para Painéis
+            'Games': '#2E7D32', // Verde para Games
+            'Arte': '#0277BD', // Azul para Arte
+            'Workshop': theme.colors.dark, // Azul escuro para Workshop
+            'Cinema': '#C41230' // Vermelho para Cinema (mesma cor de Cosplay)
+          }} 
+        />
       </motion.div>
     </GalleryContainer>
   );

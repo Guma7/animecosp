@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import theme from '../styles/theme';
 import GalleryComponent from '../components/Gallery';
+import GalleryNavigation from '../components/GalleryNavigation';
 
 const GalleryContainer = styled.div`
   min-height: 100vh;
@@ -31,28 +32,7 @@ const GalleryDescription = styled.p`
   color: ${theme.colors.text.secondary};
 `;
 
-const BackButton = styled(motion.button)`
-  background: transparent;
-  border: 1px solid ${theme.colors.accent};
-  color: ${theme.colors.text.primary};
-  padding: ${theme.spacing.sm} ${theme.spacing.md};
-  border-radius: ${theme.borderRadius.small};
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-weight: 500;
-  margin-bottom: ${theme.spacing.xl};
-  display: flex;
-  align-items: center;
-  
-  &:hover {
-    background: rgba(0, 229, 255, 0.1);
-    transform: translateX(-5px);
-  }
-  
-  svg {
-    margin-right: ${theme.spacing.xs};
-  }
-`;
+
 
 const ArtGallery = () => {
   // Dados simulados para a galeria de arte
@@ -104,16 +84,9 @@ const ArtGallery = () => {
           </GalleryDescription>
         </GalleryHeader>
         
-        <BackButton 
-          as={motion.a} 
-          href="/gallery"
-          whileHover={{ x: -5 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          ← Voltar para Galeria
-        </BackButton>
+        <GalleryNavigation currentPath="/gallery/art" />
         
-        <GalleryComponent images={artImages} />
+        <GalleryComponent images={artImages} categoryColor="#0277BD" />
       </motion.div>
     </GalleryContainer>
   );
